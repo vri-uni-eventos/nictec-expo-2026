@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNICTEC 2026 | Universidad Nacional de Ingeniería</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+        :root {
+            --uni-red: #7a1b22;
+            --dark-bg: #0a0e17;
+            --light-bg: #f4f6f9;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --accent-blue: #0056b3;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 23, 0.95);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        nav.scrolled {
+            padding: 10px 5%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--uni-red);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 14, 23, 0.8), rgba(122, 27, 34, 0.7)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            color: var(--white);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: #e2e8f0;
+        }
+
+        .hero-info {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            background: rgba(0,0,0,0.5);
+            padding: 20px 40px;
+            border-radius: 8px;
+            border-left: 4px solid var(--uni-red);
+        }
+
+        .info-item {
+            text-align: left;
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #94a3b8;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background-color: var(--uni-red);
+            color: var(--white);
+            padding: 16px 36px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #5c1419;
+        }
+
+        /* Content Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-bg);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background-color: var(--uni-red);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Grid Topics */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .topic-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent-blue);
+            transition: transform 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .topic-card h3 {
+            color: var(--dark-bg);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .topic-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Schedule Table */
+        .schedule-wrapper {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .schedule-header {
+            background: var(--dark-bg);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-bottom: 3px solid var(--uni-red);
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .schedule-table th {
+            background-color: #f8fafc;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .schedule-table td {
+            font-size: 0.95rem;
+        }
+
+        .schedule-table tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        .time-col {
+            font-weight: 600;
+            color: var(--accent-blue);
+            width: 170px;
+        }
+
+        .location-col {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Inscription Form */
+        .form-container {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark-bg);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: #94a3b8;
+            padding: 60px 20px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            text-align: left;
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1e293b;
+            padding-top: 20px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="logo">UNICTEC <span>2026</span></div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#ejes">Ejes Temáticos</a></li>
+            <li><a href="#programa">Programa</a></li>
+            <li><a href="#inscripcion">Inscripción</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="inicio">
+        <h1>UNICTEC 2026</h1>
+        <h2>Expoferia Tecnológica Internacional - Sesquicentenario UNI</h2>
+        
+        <div class="hero-info">
+            <div class="info-item">
+                <span class="info-label">Fechas del Evento</span>
+                <span class="info-value">3, 4 y 5 de Julio, 2026</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Horario Oficial</span>
+                <span class="info-value">10:00 AM - 06:00 PM</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Sede Central</span>
+                <span class="info-value">Coliseo UNI, Lima</span>
+            </div>
+        </div>
+
+        <a href="#inscripcion" class="btn-primary">Registrar Participación</a>
+    </header>
+
+    <main class="container">
+        <!-- Ejes Temáticos Section -->
+        <section id="ejes">
+            <h2 class="section-title">Ejes Temáticos de Investigación</h2>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3>Sistemas Embebidos e IoT</h3>
+                    <p>Análisis en el desarrollo de hardware, integración de sensores industriales y automatización de procesos utilizando arquitecturas avanzadas con placas ESP32 y Arduino.</p>
+                </div>
+                <div class="topic-card">
+                    <h3>Seguridad y Redes Avanzadas</h3>
+                    <p>Auditorías de infraestructura de red en Kali Linux, topologías en Cisco Packet Tracer, gestión del repositorio BinsGenRH y protocolos de encriptación VLESS/v2rayN.</p>
+                </div>
+                <div class="topic-card">
+                    <h3>Inducción y Electromovilidad</h3>
+                    <p>Diseño y construcción de sistemas de potencia, cargadores inalámbricos por inducción electromagnética y adaptación de motores eléctricos serie QS120.</p>
+                </div>
+                <div class="topic-card">
+                    <h3>Modelos Locales de IA</h3>
+                    <p>Implementación y ejecución de modelos de lenguaje en entornos locales (Ollama) y optimización de código mediante asistentes virtuales.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programa Section -->
+        <section id="programa">
+            <h2 class="section-title">Programa Oficial (3 al 5 de Julio)</h2>
+            
+            <!-- Día 1 -->
+            <div class="schedule-wrapper">
+                <div class="schedule-header">
+                    Viernes 3 de Julio: Inauguración y Tecnologías Emergentes
+                </div>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Horario</th>
+                            <th>Actividad Académica</th>
+                            <th>Ubicación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="time-col">10:00 AM - 11:30 AM</td>
+                            <td>Ceremonia de Inauguración - Sesquicentenario UNI</td>
+                            <td class="location-col">Auditorio Principal</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">11:30 AM - 01:00 PM</td>
+                            <td>Charla: Implementación de Modelos Locales de IA con Ollama</td>
+                            <td class="location-col">Pabellón Central - Aula 102</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">01:00 PM - 02:30 PM</td>
+                            <td>Receso Institucional</td>
+                            <td class="location-col">Patio de Comidas</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">02:30 PM - 04:00 PM</td>
+                            <td>Taller Práctico: Diseño de Cargadores Inalámbricos por Inducción Electromagnética</td>
+                            <td class="location-col">Laboratorio de Electromagnetismo</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">04:00 PM - 06:00 PM</td>
+                            <td>Apertura de Feria y Networking</td>
+                            <td class="location-col">Coliseo UNI</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Día 2 -->
+            <div class="schedule-wrapper">
+                <div class="schedule-header">
+                    Sábado 4 de Julio: Redes, Seguridad y Electromovilidad
+                </div>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Horario</th>
+                            <th>Actividad Académica</th>
+                            <th>Ubicación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="time-col">10:00 AM - 11:30 AM</td>
+                            <td>Foro de Electromovilidad: Conversión de motocicletas con motores eléctricos QS120</td>
+                            <td class="location-col">Auditorio de Mecatrónica</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">11:30 AM - 01:00 PM</td>
+                            <td>Laboratorio: Topologías de red con Cisco Packet Tracer y protocolos VLESS/Xray</td>
+                            <td class="location-col">Centro de Cómputo - Lab 3</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">01:00 PM - 02:30 PM</td>
+                            <td>Receso Institucional</td>
+                            <td class="location-col">Patio de Comidas</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">02:30 PM - 04:30 PM</td>
+                            <td>Masterclass: Entornos de auditoría en Kali Linux y gestión del repositorio BinsGenRH</td>
+                            <td class="location-col">Auditorio Central</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">04:30 PM - 06:00 PM</td>
+                            <td>Exhibición de Startups y Prototipos Universitarios</td>
+                            <td class="location-col">Zona de Stands (1 al 43)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Día 3 -->
+            <div class="schedule-wrapper">
+                <div class="schedule-header">
+                    Domingo 5 de Julio: Clausura y Presentación de Proyectos Finales
+                </div>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Horario</th>
+                            <th>Actividad Académica</th>
+                            <th>Ubicación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="time-col">10:00 AM - 11:30 AM</td>
+                            <td>Apertura de Pabellones y Registro de Asistentes para Talleres Prácticos</td>
+                            <td class="location-col">Puerta Principal - Coliseo UNI</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">11:30 AM - 01:00 PM</td>
+                            <td>Taller Especializado: Integración de arquitecturas ESP32 para telemetría</td>
+                            <td class="location-col">Pabellón Central - Laboratorio 102</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">01:00 PM - 02:30 PM</td>
+                            <td>Receso Institucional y Networking Interuniversitario</td>
+                            <td class="location-col">Zona de Esparcimiento - Explanada</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">02:30 PM - 04:00 PM</td>
+                            <td>Conferencia Magistral: Desafíos en la Ingeniería Electrónica de Potencia</td>
+                            <td class="location-col">Auditorio Principal de la Facultad</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">04:00 PM - 05:30 PM</td>
+                            <td>Demostración de Startups: Sensores Inalámbricos e Inteligencia Artificial</td>
+                            <td class="location-col">Zona de Stands (1 al 43)</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">05:30 PM - 06:00 PM</td>
+                            <td>Ceremonia de Clausura, Premiación y Entrega de Constancias</td>
+                            <td class="location-col">Escenario Principal - Coliseo UNI</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Inscripción Section -->
+        <section id="inscripcion">
+            <h2 class="section-title">Registro de Asistencia Institucional</h2>
+            <div class="form-container">
+                <p style="text-align: center; margin-bottom: 30px; color: var(--text-muted);">Completa el formulario para generar tu credencial digital y certificar tu participación en los talleres. Evento exclusivo para estudiantes de ingeniería.</p>
+                
+                <form onsubmit="event.preventDefault(); alert('Se le envió el código de ingreso al correo');">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Nombres</label>
+                            <input type="text" class="form-control" placeholder="Tus nombres" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" placeholder="Tus apellidos" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Ciclo de Estudios Actual</label>
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Seleccione su ciclo...</option>
+                                <option value="1-4">1° a 4° Ciclo</option>
+                                <option value="5">5° Ciclo</option>
+                                <option value="6-8">6° a 8° Ciclo</option>
+                                <option value="9-10">9° a 10° Ciclo / Egresado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Carrera Profesional</label>
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Seleccione su carrera...</option>
+                                <option value="electronica">Ingeniería Electrónica</option>
+                                <option value="mecatronica">Ingeniería Mecatrónica</option>
+                                <option value="sistemas">Ingeniería de Sistemas</option>
+                                <option value="telecomunicaciones">Ingeniería de Telecomunicaciones</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Correo Institucional</label>
+                        <input type="email" class="form-control" placeholder="usuario@institucion.edu.pe" pattern=".*\.edu\.pe$" title="Debe usar un correo institucional terminado en .edu.pe" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px; font-size: 1.05rem;">Generar Credencial Virtual</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Organización Institucional</h4>
+                <p>Universidad Nacional de Ingeniería</p>
+                <p>Vicerrectorado de Investigación (VRI)</p>
+                <p>150 Años de Excelencia Académica</p>
+            </div>
+            <div class="footer-col">
+                <h4>Información al Asistente</h4>
+                <p>El ingreso es estrictamente libre previa validación de registro virtual. Se emitirán constancias digitales a los estudiantes que certifiquen asistencia presencial en los talleres.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>Av. Túpac Amaru 210, Rímac</p>
+                <p>Lima, Perú</p>
+                <p>contacto.vri@uni.edu.pe</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 UNICTEC - Universidad Nacional de Ingeniería. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // Script para efecto visual en la barra de navegación al hacer scroll
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
