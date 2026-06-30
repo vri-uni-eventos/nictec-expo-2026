@@ -214,12 +214,18 @@
         }
 
         /* Schedule Table */
+        .schedule-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         .schedule-wrapper {
             background: var(--white);
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            overflow: hidden;
             margin-bottom: 40px;
+            min-width: 600px; /* Asegura que la tabla no se aplaste en móviles */
         }
 
         .schedule-header {
@@ -344,6 +350,60 @@
             padding-top: 20px;
             font-size: 0.8rem;
         }
+
+        /* =========================================
+           ADAPTACIÓN PARA CELULARES (RESPONSIVE)
+           ========================================= */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+                padding: 0 10px;
+            }
+
+            .hero-info {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+                width: 90%;
+            }
+
+            .info-item {
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr; /* Pasa de 2 columnas a 1 columna en celulares */
+                gap: 0;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .footer-content {
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -408,138 +468,140 @@
         <section id="programa">
             <h2 class="section-title">Programa Oficial (3 al 5 de Julio)</h2>
             
-            <!-- Día 1 -->
-            <div class="schedule-wrapper">
-                <div class="schedule-header">
-                    Viernes 3 de Julio: Inauguración y Tecnologías Emergentes
+            <div class="schedule-container">
+                <!-- Día 1 -->
+                <div class="schedule-wrapper">
+                    <div class="schedule-header">
+                        Viernes 3 de Julio: Inauguración y Tecnologías Emergentes
+                    </div>
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Horario</th>
+                                <th>Actividad Académica</th>
+                                <th>Ubicación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="time-col">10:00 AM - 11:30 AM</td>
+                                <td>Ceremonia de Inauguración - Sesquicentenario UNI</td>
+                                <td class="location-col">Auditorio Principal</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">11:30 AM - 01:00 PM</td>
+                                <td>Charla: Implementación de Modelos Locales de IA con Ollama</td>
+                                <td class="location-col">Pabellón Central - Aula 102</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">01:00 PM - 02:30 PM</td>
+                                <td>Receso Institucional</td>
+                                <td class="location-col">Patio de Comidas</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">02:30 PM - 04:00 PM</td>
+                                <td>Taller Práctico: Diseño de Cargadores Inalámbricos por Inducción Electromagnética</td>
+                                <td class="location-col">Laboratorio de Electromagnetismo</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">04:00 PM - 06:00 PM</td>
+                                <td>Apertura de Feria y Networking</td>
+                                <td class="location-col">Coliseo UNI</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <table class="schedule-table">
-                    <thead>
-                        <tr>
-                            <th>Horario</th>
-                            <th>Actividad Académica</th>
-                            <th>Ubicación</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="time-col">10:00 AM - 11:30 AM</td>
-                            <td>Ceremonia de Inauguración - Sesquicentenario UNI</td>
-                            <td class="location-col">Auditorio Principal</td>
-                        </tr>
-                        <tr>
-                            <td class="time-col">11:30 AM - 01:00 PM</td>
-                            <td>Charla: Implementación de Modelos Locales de IA con Ollama</td>
-                            <td class="location-col">Pabellón Central - Aula 102</td>
-                        </tr>
-                        <tr>
-                            <td class="time-col">01:00 PM - 02:30 PM</td>
-                            <td>Receso Institucional</td>
-                            <td class="location-col">Patio de Comidas</td>
-                        </tr>
-                        <tr>
-                            <td class="time-col">02:30 PM - 04:00 PM</td>
-                            <td>Taller Práctico: Diseño de Cargadores Inalámbricos por Inducción Electromagnética</td>
-                            <td class="location-col">Laboratorio de Electromagnetismo</td>
-                        </tr>
-                        <tr>
-                            <td class="time-col">04:00 PM - 06:00 PM</td>
-                            <td>Apertura de Feria y Networking</td>
-                            <td class="location-col">Coliseo UNI</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
 
-            <!-- Día 2 -->
-            <div class="schedule-wrapper">
-                <div class="schedule-header">
-                    Sábado 4 de Julio: Redes, Seguridad y Electromovilidad
+                <!-- Día 2 -->
+                <div class="schedule-wrapper">
+                    <div class="schedule-header">
+                        Sábado 4 de Julio: Redes, Seguridad y Electromovilidad
+                    </div>
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Horario</th>
+                                <th>Actividad Académica</th>
+                                <th>Ubicación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="time-col">10:00 AM - 11:30 AM</td>
+                                <td>Foro de Electromovilidad: Conversión de motocicletas con motores eléctricos QS120</td>
+                                <td class="location-col">Auditorio de Mecatrónica</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">11:30 AM - 01:00 PM</td>
+                                <td>Laboratorio: Topologías de red con Cisco Packet Tracer y protocolos VLESS/Xray</td>
+                                <td class="location-col">Centro de Cómputo - Lab 3</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">01:00 PM - 02:30 PM</td>
+                                <td>Receso Institucional</td>
+                                <td class="location-col">Patio de Comidas</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">02:30 PM - 04:30 PM</td>
+                                <td>Masterclass: Entornos de auditoría en Kali Linux y gestión del repositorio BinsGenRH</td>
+                                <td class="location-col">Auditorio Central</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">04:30 PM - 06:00 PM</td>
+                                <td>Exhibición de Startups y Prototipos Universitarios</td>
+                                <td class="location-col">Zona de Stands (1 al 43)</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <table class="schedule-table">
-                    <thead>
-                        <tr>
-                            <th>Horario</th>
-                            <th>Actividad Académica</th>
-                            <th>Ubicación</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="time-col">10:00 AM - 11:30 AM</td>
-                            <td>Foro de Electromovilidad: Conversión de motocicletas con motores eléctricos QS120</td>
-                            <td class="location-col">Auditorio de Mecatrónica</td>
-                        </tr>
-                        <tr>
-                            <td class="time-col">11:30 AM - 01:00 PM</td>
-                            <td>Laboratorio: Topologías de red con Cisco Packet Tracer y protocolos VLESS/Xray</td>
-                            <td class="location-col">Centro de Cómputo - Lab 3</td>
-                        </tr>
-                        <tr>
-                            <td class="time-col">01:00 PM - 02:30 PM</td>
-                            <td>Receso Institucional</td>
-                            <td class="location-col">Patio de Comidas</td>
-                        </tr>
-                        <tr>
-                            <td class="time-col">02:30 PM - 04:30 PM</td>
-                            <td>Masterclass: Entornos de auditoría en Kali Linux y gestión del repositorio BinsGenRH</td>
-                            <td class="location-col">Auditorio Central</td>
-                        </tr>
-                        <tr>
-                            <td class="time-col">04:30 PM - 06:00 PM</td>
-                            <td>Exhibición de Startups y Prototipos Universitarios</td>
-                            <td class="location-col">Zona de Stands (1 al 43)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
 
-            <!-- Día 3 -->
-            <div class="schedule-wrapper">
-                <div class="schedule-header">
-                    Domingo 5 de Julio: Clausura y Presentación de Proyectos Finales
+                <!-- Día 3 -->
+                <div class="schedule-wrapper">
+                    <div class="schedule-header">
+                        Domingo 5 de Julio: Clausura y Presentación de Proyectos Finales
+                    </div>
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Horario</th>
+                                <th>Actividad Académica</th>
+                                <th>Ubicación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="time-col">10:00 AM - 11:30 AM</td>
+                                <td>Apertura de Pabellones y Registro de Asistentes para Talleres Prácticos</td>
+                                <td class="location-col">Puerta Principal - Coliseo UNI</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">11:30 AM - 01:00 PM</td>
+                                <td>Taller Especializado: Integración de arquitecturas ESP32 para telemetría</td>
+                                <td class="location-col">Pabellón Central - Laboratorio 102</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">01:00 PM - 02:30 PM</td>
+                                <td>Receso Institucional y Networking Interuniversitario</td>
+                                <td class="location-col">Zona de Esparcimiento - Explanada</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">02:30 PM - 04:00 PM</td>
+                                <td>Conferencia Magistral: Desafíos en la Ingeniería Electrónica de Potencia</td>
+                                <td class="location-col">Auditorio Principal de la Facultad</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">04:00 PM - 05:30 PM</td>
+                                <td>Demostración de Startups: Sensores Inalámbricos e Inteligencia Artificial</td>
+                                <td class="location-col">Zona de Stands (1 al 43)</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">05:30 PM - 06:00 PM</td>
+                                <td>Ceremonia de Clausura, Premiación y Entrega de Constancias</td>
+                                <td class="location-col">Escenario Principal - Coliseo UNI</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <table class="schedule-table">
-                    <thead>
-                        <tr>
-                            <th>Horario</th>
-                            <th>Actividad Académica</th>
-                            <th>Ubicación</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="time-col">10:00 AM - 11:30 AM</td>
-                            <td>Apertura de Pabellones y Registro de Asistentes para Talleres Prácticos</td>
-                            <td class="location-col">Puerta Principal - Coliseo UNI</td>
-                        </tr>
-                        <tr>
-                            <td class="time-col">11:30 AM - 01:00 PM</td>
-                            <td>Taller Especializado: Integración de arquitecturas ESP32 para telemetría</td>
-                            <td class="location-col">Pabellón Central - Laboratorio 102</td>
-                        </tr>
-                        <tr>
-                            <td class="time-col">01:00 PM - 02:30 PM</td>
-                            <td>Receso Institucional y Networking Interuniversitario</td>
-                            <td class="location-col">Zona de Esparcimiento - Explanada</td>
-                        </tr>
-                        <tr>
-                            <td class="time-col">02:30 PM - 04:00 PM</td>
-                            <td>Conferencia Magistral: Desafíos en la Ingeniería Electrónica de Potencia</td>
-                            <td class="location-col">Auditorio Principal de la Facultad</td>
-                        </tr>
-                        <tr>
-                            <td class="time-col">04:00 PM - 05:30 PM</td>
-                            <td>Demostración de Startups: Sensores Inalámbricos e Inteligencia Artificial</td>
-                            <td class="location-col">Zona de Stands (1 al 43)</td>
-                        </tr>
-                        <tr>
-                            <td class="time-col">05:30 PM - 06:00 PM</td>
-                            <td>Ceremonia de Clausura, Premiación y Entrega de Constancias</td>
-                            <td class="location-col">Escenario Principal - Coliseo UNI</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </section>
 
